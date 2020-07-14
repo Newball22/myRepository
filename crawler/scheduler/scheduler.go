@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-//这个文件是给第二级改进用的
+//这个文件是给第二级并发改进用的
 type SimpleScheduler struct {
 	workerChan chan engine.Request
 }
