@@ -19,13 +19,17 @@ func (q *QueuedScheduler) ConfigMasterWorkerChan(chan engine.Request) {
 	panic("implement me")
 }
 
-//告诉外界有一个worker可以接收request
+//告诉外界有一个worker可以接收request{意思是工作队列已经有一个'工作channel'进来了在等着工作}
 func (q *QueuedScheduler) WorkerReady(w chan engine.Request) {
 	q.workerChan <- w
 }
 
+/*
+包含关系：requestChan->requestQueued->requestQueued[0]->activeRequest(engine.Request类型)
+		workerChan->workerQueued->workerQueued[0]->activeWorker(chan engine.Request类型)
+*/
 func (q *QueuedScheduler) Run() {
-	//生成channel
+	//初始化请求队列和工作队列的存放环境
 	q.requestChan = make(chan engine.Request)
 	q.workerChan = make(chan chan engine.Request)
 	go func() {
@@ -43,10 +47,10 @@ func (q *QueuedScheduler) Run() {
 			}
 
 			select {
-			//当requestChan收到数据
+			//当requestChan收到数据,放到队列
 			case r := <-q.requestChan:
 				requestQueued = append(requestQueued, r)
-			//当workerChan收到数据
+			//当workerChan收到数据，放到队列
 			case w := <-q.workerChan:
 				workerQueued = append(workerQueued, w)
 			//当请求队列和工作队列都不为空时，给任务列表分配任务

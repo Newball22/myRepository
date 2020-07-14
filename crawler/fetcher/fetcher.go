@@ -20,7 +20,7 @@ var rateLimiter = time.Tick(200 * time.Millisecond)
 //该模块任务是获取目标URL的网页数据
 func Fetch(url string) ([]byte, error) {
 	<-rateLimiter
-	clent := &http.Client{}
+	client := &http.Client{}
 	newUrl := strings.Replace(url, "http://", "https://", 1)
 	req, err := http.NewRequest("GET", newUrl, nil)
 	if err != nil {
@@ -32,7 +32,7 @@ func Fetch(url string) ([]byte, error) {
 	req.Header.Set("Connection", "keep-alive")
 	//req.Header.Add("cookie", cookieTest)
 	//req.Host = " www.zhenai.com"
-	resp, err := clent.Do(req)
+	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
 	}

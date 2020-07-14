@@ -8,7 +8,8 @@ import (
 
 func main() {
 	e := engine.ConcurrentEngine{
-		Scheduler:   &scheduler.QueuedScheduler{}, //这里调用并发调度器{第三级别}
+		//Scheduler: &scheduler.SimpleScheduler{}, //这里是调用并发调度器{第二级别}
+		Scheduler:   &scheduler.QueuedScheduler{}, //这里调用任务列表{第三级别}
 		WorkerCount: 50,
 	}
 	e.Run(engine.Request{
