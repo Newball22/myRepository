@@ -11,7 +11,6 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
-	"strings"
 	"time"
 )
 
@@ -21,8 +20,8 @@ var rateLimiter = time.Tick(200 * time.Millisecond)
 func Fetch(url string) ([]byte, error) {
 	<-rateLimiter
 	client := &http.Client{}
-	newUrl := strings.Replace(url, "http://", "https://", 1)
-	req, err := http.NewRequest("GET", newUrl, nil)
+	//newUrl := strings.Replace(url, "http://", "https://", 1)
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -30,6 +29,7 @@ func Fetch(url string) ([]byte, error) {
 	req.Header.Add("User-Agent", getRanAgent())
 	req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
 	req.Header.Set("Connection", "keep-alive")
+	//req.Header.Add("Referer", "https://album.zhenai.com/u/1577319979")
 	//req.Header.Add("cookie", cookieTest)
 	//req.Host = " www.zhenai.com"
 	resp, err := client.Do(req)

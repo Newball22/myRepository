@@ -32,6 +32,7 @@ func (q *QueuedScheduler) Run() {
 	//初始化请求队列和工作队列的存放环境
 	q.requestChan = make(chan engine.Request)
 	q.workerChan = make(chan chan engine.Request)
+
 	go func() {
 		//请求队列
 		var requestQueued []engine.Request
@@ -47,7 +48,7 @@ func (q *QueuedScheduler) Run() {
 			}
 
 			select {
-			//当requestChan收到数据,放到队列
+			//当requestChan收到数据(因为数据可以传给r),放到队列
 			case r := <-q.requestChan:
 				requestQueued = append(requestQueued, r)
 			//当workerChan收到数据，放到队列

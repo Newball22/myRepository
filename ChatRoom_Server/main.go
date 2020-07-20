@@ -190,7 +190,7 @@ LOOP:
 
 	}()
 
-	//判断用户是否为僵尸粉
+	//判断用户是否为僵尸粉,超时则强踢
 	for {
 		select {
 		case <-overTime:
