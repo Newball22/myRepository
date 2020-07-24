@@ -1,0 +1,24 @@
+#数据库信息
+[Mysql]
+UserName = "root"
+Password = "123456"
+IpHost = "127.0.0.1:3306"
+DbName = "school"
+
+#版本号
+Version = "1.0"
+
+#用户信息
+[User]
+Name = "newball"
+Age = 18
+IsVip = true
+
+#组信息
+[[Group]]
+ID = 1001
+Name = "group1"
+
+[[Group]]
+ID = 1002
+Name = "group2"
