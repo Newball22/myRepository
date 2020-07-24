@@ -16,7 +16,7 @@ type ConcurrentEngine struct {
 	WorkerCount int       //任务并发数量
 }
 
-//多线程使用的方法
+//多线程使用的方法,在队列里不用
 func (e *ConcurrentEngine) Run(seeds ...Request) {
 	log.Println("=====ConcurrentEngine'Run Start=====")
 	//in := make(chan Request)               //scheduler的输入请求{第二级别}
