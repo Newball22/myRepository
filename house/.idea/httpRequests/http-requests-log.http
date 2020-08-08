@@ -1,0 +1,16 @@
+PUT http://localhost:9200/index/type/id
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-01T052402.400.json
+
+###
+
+GET http://localhost:9200
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-01T052130.200.json
+
+###
+
