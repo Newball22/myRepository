@@ -1,0 +1,23 @@
+{
+  "data": {
+    "mysqlDb": {
+      "Dialect": "mysql",
+      "Database": "school",
+      "User": "root",
+      "Password": "123456",
+      "Charset": "utf8",
+      "Host": "127.0.0.1",
+      "Port": 3306,
+      "MaxIdleConns": 5,
+      "MaxOpenConns": 10
+    },
+    "redis": {
+      "User": "root",
+      "Password": "",
+      "Charset": "utf8",
+      "Host": "127.0.0.1",
+      "Port": 6379
+    }
+  },
+  "version": "1.0.2"
+}
